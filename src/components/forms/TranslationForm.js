@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { updateCanvas } from '../../canvas/canvas.builder';
+import { translate } from '../../canvas/canvas.builder';
 
 const TranslationForm = props => {
 
     const [input, setInput] = useState('');
 
     const onTranslationClicked = () => {
-        updateCanvas(input);
+        translate(input);
     }
 
     const onInputChanged = ev => setInput(ev.target.value.trim());
