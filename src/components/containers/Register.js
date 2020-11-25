@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import RegisterForm from '../forms/RegisterForm';
 
 const Register = () => {

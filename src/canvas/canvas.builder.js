@@ -82,11 +82,18 @@ export default class CanvasCreator extends Component {
     updateCanvasHeight(targetPositionX) {
         this.setState({ canvasHeight: targetPositionX });
     }
+
+    renderHistoryPage(){
+        this.setState({showHistory:true})
+    }
+    renderTranslationPage(){
+        this.setState({showHistory: false});
+    }
     render() {
         if (this.state.showHistory === false) {
             return (
                 <div>
-
+                   <button onClick={this.renderHistoryPage.bind(this)}>Go to History page</button>
                     <form>
                         <div>
                             <label> The letters to translate (1 to 40 characters): </label>
@@ -106,6 +113,7 @@ export default class CanvasCreator extends Component {
 
                 <div>
                     <h1>HISTORY</h1>
+                    <button onClick= {this.renderTranslationPage.bind(this)}>Go to Translation Page</button>
                     <p>{getHistory()[0]}</p>
                     <canvas ref={this.history1} width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
                     <p>{getHistory()[1]}</p>
