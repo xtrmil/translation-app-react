@@ -7,8 +7,12 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 import './App.css';
+// import {iniateSignsMap} from './canvas/inputconverter';
 
 function App() {
+
+  //const signs = iniateSignsMap();
+
   return (
     <Router>
     <div className="App">
