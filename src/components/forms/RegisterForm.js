@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {register} from '../../session/user.session';
 const RegisterForm = props => {
 
@@ -7,6 +8,7 @@ const RegisterForm = props => {
     const onRegisterClicked = async ev => {
 
         register(username);
+        
     };
 
     const onUsernameChanged = ev => setUsername(ev.target.value.trim());
@@ -20,7 +22,9 @@ const RegisterForm = props => {
 
 
             <div>
+            <Link to="/translation">
                 <button type="button" onClick={onRegisterClicked}>Register</button>
+                </Link>
             </div>
         </form>
     );
