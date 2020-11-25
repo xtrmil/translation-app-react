@@ -15,7 +15,6 @@ export default class CanvasCreator extends Component {
     }
 
     onTranslationClicked () {
-        console.log(this.state.input);
         this.updateCanvas(translate(this.state.input));
         addToHistory(this.state.input);
    }
