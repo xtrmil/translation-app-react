@@ -4,7 +4,6 @@ export const translate = (input) => {
         letterCordinates.push(getSigns(input.charAt(i)));
       }
 
-    console.log(letterCordinates);
   return letterCordinates;
 
 }
