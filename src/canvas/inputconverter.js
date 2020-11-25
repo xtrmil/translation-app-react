@@ -41,6 +41,5 @@ export const initiateSignsMap = () => {
   signs.set(' ',[300,450]);
   signs.set('.',[300,450]);
   signs.set(',',[300,450]);
-
   return signs;
 }
