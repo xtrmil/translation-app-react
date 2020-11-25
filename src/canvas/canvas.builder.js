@@ -25,13 +25,13 @@ export default class CanvasCreator extends Component {
             canvasHeight: 150,
             input: null,
             signCoordinates: initiateSignsMap(),
-            showHistory: true
+            showHistory: false
         }
     }
 
     onTranslationClicked() {
-
-        this.updateCanvas(convertToCoordinates(this.state.signCoordinates, this.state.input));
+        const ref = this.translationRef.current.getContext('2d');
+        this.updateCanvas(convertToCoordinates(this.state.signCoordinates, this.state.input), ref);
         addToHistory(this.state.input);
     }
 
@@ -52,12 +52,12 @@ export default class CanvasCreator extends Component {
         }
     }
 
-    updateCanvas(signs, hctx) {
+    updateCanvas(signs, cref) {
         let targetSize = 100;
 
         this.setState({ canvasWidth: (signs.length * targetSize) });
         this.setState({ canvasHeight: Math.ceil((signs.length / 10)) * targetSize });
-        const ctx = hctx
+        const ctx = cref;
         let imageObj1 = new Image();
         imageObj1.src = signSheet
         imageObj1.onload = function () {
@@ -90,7 +90,8 @@ export default class CanvasCreator extends Component {
                     <form>
                         <div>
                             <label> The letters to translate (1 to 40 characters): </label>
-                            <input type="text" minLength="1" maxLength="40" pattern="^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
+                            {/* <input type="text" minLength="1" maxLength="40" pattern="^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} /> */}
+                            <input type="text" minLength="1" maxLength="40" pattern="" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
                         </div>
 
                         <div>

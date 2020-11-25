@@ -43,3 +43,4 @@ export const initiateSignsMap = () => {
   signs.set(',',[300,450]);
   return signs;
 }
+
