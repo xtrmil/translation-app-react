@@ -1,11 +1,14 @@
 import React from 'react';
 import Canvas from '../../canvas/canvas.builder';
 
-const TranslationForm = props => {
 
+const TranslationForm = () => {
+   
+    
     return (
         <div>
             <Canvas/>
+
         </div>
     );
 }

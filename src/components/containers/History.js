@@ -1,8 +1,7 @@
 import React from 'react';
 import Canvas from '../../canvas/canvas.builder';
-import useLocation from 'react;'
 
-const History = props => {
+const History = () => {
 
     return (
         <div>
