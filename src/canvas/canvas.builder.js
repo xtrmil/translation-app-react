@@ -41,7 +41,6 @@ export default class CanvasCreator extends Component {
 
     componentDidMount() {
         
-        
         if (this.state.showHistory) {
             let history = getHistory();
             let nr = 1;
