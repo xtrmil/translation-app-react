@@ -2,7 +2,8 @@ import React, { Component, } from 'react';
 import signSheet from '../../src/sign-spritesheet-1200.png';
 import { convertToCoordinates } from './inputconverter';
 import { initiateSignsMap } from './inputconverter';
-import { addToHistory } from '../history/translation.history';
+// eslint-disable-next-line 
+import { addToHistory,getHistory } from '../history/translation.history';
 
 export default class CanvasCreator extends Component {
 
@@ -11,8 +12,10 @@ export default class CanvasCreator extends Component {
         this.canvasRef = React.createRef();
         this.state = {
             canvasWidth: null,
+            canvasHeight: 150,
             input: null,
-            signCoordinates: initiateSignsMap()
+            signCoordinates: initiateSignsMap(),
+            showHistory: true
         }
     }
 
@@ -26,8 +29,21 @@ export default class CanvasCreator extends Component {
         this.setState({ input: e.target.value.trim().toLowerCase() });
     }
 
+    componentDidMount(){
+        if(this.state.showHistory){
+          let history = getHistory();  
+
+         
+              this.updateCanvas(convertToCoordinates(this.state.signCoordinates, history[0]));
+            //  this.updateCanvas(convertToCoordinates(this.state.signCoordinates, history[1]));
+        
+        }
+    }
+
     updateCanvas(signs) {
-        this.setState({ canvasWidth: (signs.length * 150) });
+        let targetSize = 100;
+        this.setState({ canvasWidth: (signs.length * targetSize) });
+        this.setState({canvasHeight : Math.ceil((signs.length/10)) * targetSize});
         const ctx = this.canvasRef.current.getContext('2d');
         let imageObj1 = new Image();
         imageObj1.src = signSheet
@@ -35,31 +51,62 @@ export default class CanvasCreator extends Component {
 
             let i;
             let targetPositionY = 0;
-
+            let targetPositionX = 0;
+            
             for (i = 0; i < signs.length; i++) {
 
-                ctx.drawImage(imageObj1, signs[i][0], signs[i][1], 150, 150, targetPositionY, 0, 150, 150);
-                targetPositionY += 150;
+                ctx.drawImage(imageObj1, signs[i][0], signs[i][1], 150, 150, targetPositionY, targetPositionX, targetSize, targetSize);
+                targetPositionY += targetSize;
+                if(targetPositionY>=1500){
+                    targetPositionY = 0;
+                    targetPositionX =  targetPositionX + targetSize;
+
+                }
             }
         }
     }
+
+    updateCanvasHeight(targetPositionX){
+        this.setState({canvasHeight : targetPositionX});
+    }
     render() {
-        
+        if(this.state.showHistory === false){
         return (
             <div>
-                <canvas ref={this.canvasRef} width={this.state.canvasWidth} height={150}> </canvas>
+                
                 <form>
                     <div>
-                        <label> The letters to translate: </label>
-                        <input type="text" placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
+                        <label> The letters to translate (1 to 40 characters): </label>
+                        <input type="text" minLength="1" maxLength="40" pattern="^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
                     </div>
 
                     <div>
                         <button type="button" onClick={this.onTranslationClicked.bind(this)}>Translate</button>
                     </div>
                 </form>
+                <canvas ref={this.canvasRef} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
             </div>
         );
+        }else{
+            return (
+            <div>
+                <h1>HISTORY</h1>
+                <p>word 1</p>
+            <canvas ref={this.canvasRef1} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+            
+            <canvas ref={this.canvasRef2} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+            <canvas ref={this.canvasRef3} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+            <canvas ref={this.canvasRef4} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+            <canvas ref={this.canvasRef5} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+            <canvas ref={this.canvasRef6} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+            <canvas ref={this.canvasRef7} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+            <canvas ref={this.canvasRef8} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+            <canvas ref={this.canvasRef9} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+            <canvas ref={this.canvasRef10} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+            </div>
+            );
+        }
+
     }
 };
 
