@@ -1,4 +1,4 @@
-export const translate = (signCoordinates, input) => {
+export const convertToCoordinates = (signCoordinates, input) => {
 
     let letterCordinates = [];
     for (var i in input) {
