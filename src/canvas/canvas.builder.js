@@ -44,6 +44,7 @@ export default class CanvasCreator extends Component {
         }
     }
     render() {
+        
         return (
             <div>
                 <canvas ref={this.canvasRef} width={this.state.canvasWidth} height={150}> </canvas>
