@@ -7,7 +7,6 @@ const TranslationForm = props => {
         <div>
             <Canvas/>
         </div>
-       
     );
 }
 
