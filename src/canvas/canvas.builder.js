@@ -1,6 +1,7 @@
 import React, { Component, } from 'react';
 import signSheet from '../../src/sign-spritesheet-1200.png';
 import {translate} from './inputconverter';
+import {addToHistory} from '../history/translation.history';
 
 export default class CanvasCreator extends Component {
 
@@ -16,6 +17,7 @@ export default class CanvasCreator extends Component {
     onTranslationClicked () {
         console.log(this.state.input);
         this.updateCanvas(translate(this.state.input));
+        addToHistory(this.state.input);
    }
 
    handleChange (e) {
