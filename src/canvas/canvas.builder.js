@@ -2,14 +2,24 @@ import React, { Component, } from 'react';
 import signSheet from '../../src/sign-spritesheet-1200.png';
 import { convertToCoordinates } from './inputconverter';
 import { initiateSignsMap } from './inputconverter';
-// eslint-disable-next-line 
-import { addToHistory,getHistory } from '../history/translation.history';
+import { addToHistory, getHistory } from '../history/translation.history';
 
 export default class CanvasCreator extends Component {
 
     constructor(props) {
         super(props);
-        this.canvasRef = React.createRef();
+        this.translationRef = React.createRef();
+        this.history1 = React.createRef();
+        this.history2 = React.createRef();
+        this.history3 = React.createRef();
+        this.history4 = React.createRef();
+        this.history5 = React.createRef();
+        this.history6 = React.createRef();
+        this.history7 = React.createRef();
+        this.history8 = React.createRef();
+        this.history9 = React.createRef();
+        this.history10 = React.createRef();
+
         this.state = {
             canvasWidth: null,
             canvasHeight: 150,
@@ -29,22 +39,26 @@ export default class CanvasCreator extends Component {
         this.setState({ input: e.target.value.trim().toLowerCase() });
     }
 
-    componentDidMount(){
-        if(this.state.showHistory){
-          let history = getHistory();  
-
-         
-              this.updateCanvas(convertToCoordinates(this.state.signCoordinates, history[0]));
-            //  this.updateCanvas(convertToCoordinates(this.state.signCoordinates, history[1]));
+    componentDidMount() {
         
+        
+        if (this.state.showHistory) {
+            let history = getHistory();
+            let nr = 1;
+            history.forEach(word => {
+                const hctx = this[`history${nr}`].current.getContext('2d');
+                this.updateCanvas(convertToCoordinates(this.state.signCoordinates, word), hctx);
+                nr++;
+            });
         }
     }
 
-    updateCanvas(signs) {
+    updateCanvas(signs, hctx) {
         let targetSize = 100;
+
         this.setState({ canvasWidth: (signs.length * targetSize) });
-        this.setState({canvasHeight : Math.ceil((signs.length/10)) * targetSize});
-        const ctx = this.canvasRef.current.getContext('2d');
+        this.setState({ canvasHeight: Math.ceil((signs.length / 10)) * targetSize });
+        const ctx = hctx
         let imageObj1 = new Image();
         imageObj1.src = signSheet
         imageObj1.onload = function () {
@@ -52,58 +66,68 @@ export default class CanvasCreator extends Component {
             let i;
             let targetPositionY = 0;
             let targetPositionX = 0;
-            
+
             for (i = 0; i < signs.length; i++) {
 
                 ctx.drawImage(imageObj1, signs[i][0], signs[i][1], 150, 150, targetPositionY, targetPositionX, targetSize, targetSize);
                 targetPositionY += targetSize;
-                if(targetPositionY>=1500){
+                if (targetPositionY >= 1500) {
                     targetPositionY = 0;
-                    targetPositionX =  targetPositionX + targetSize;
+                    targetPositionX = targetPositionX + targetSize;
 
                 }
             }
         }
     }
 
-    updateCanvasHeight(targetPositionX){
-        this.setState({canvasHeight : targetPositionX});
+    updateCanvasHeight(targetPositionX) {
+        this.setState({ canvasHeight: targetPositionX });
     }
     render() {
-        if(this.state.showHistory === false){
-        return (
-            <div>
-                
-                <form>
-                    <div>
-                        <label> The letters to translate (1 to 40 characters): </label>
-                        <input type="text" minLength="1" maxLength="40" pattern="^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
-                    </div>
-
-                    <div>
-                        <button type="button" onClick={this.onTranslationClicked.bind(this)}>Translate</button>
-                    </div>
-                </form>
-                <canvas ref={this.canvasRef} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
-            </div>
-        );
-        }else{
+        if (this.state.showHistory === false) {
             return (
-            <div>
-                <h1>HISTORY</h1>
-                <p>word 1</p>
-            <canvas ref={this.canvasRef1} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
-            
-            <canvas ref={this.canvasRef2} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
-            <canvas ref={this.canvasRef3} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
-            <canvas ref={this.canvasRef4} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
-            <canvas ref={this.canvasRef5} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
-            <canvas ref={this.canvasRef6} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
-            <canvas ref={this.canvasRef7} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
-            <canvas ref={this.canvasRef8} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
-            <canvas ref={this.canvasRef9} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
-            <canvas ref={this.canvasRef10} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
-            </div>
+                <div>
+
+                    <form>
+                        <div>
+                            <label> The letters to translate (1 to 40 characters): </label>
+                            <input type="text" minLength="1" maxLength="40" pattern="^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
+                        </div>
+
+                        <div>
+                            <button type="button" onClick={this.onTranslationClicked.bind(this)}>Translate</button>
+                        </div>
+                    </form>
+                    <canvas ref={this.translationRef} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+                </div>
+            );
+        } else {
+            return (
+
+                <div>
+                    <h1>HISTORY</h1>
+                    <p>{getHistory()[0]}</p>
+                    <canvas ref={this.history1} width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
+                    <p>{getHistory()[1]}</p>
+
+                    <canvas ref={this.history2} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+                    <p>{getHistory()[2]}</p>
+                    <canvas ref={this.history3} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+                    <p>{getHistory()[3]}</p>
+                    <canvas ref={this.history4} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+                    <p>{getHistory()[4]}</p>
+                    <canvas ref={this.history5} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+                    <p>{getHistory()[5]}</p>
+                    <canvas ref={this.history6} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+                    <p>{getHistory()[6]}</p>
+                    <canvas ref={this.history7} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+                    <p>{getHistory()[7]}</p>
+                    <canvas ref={this.history8} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+                    <p>{getHistory()[8]}</p>
+                    <canvas ref={this.history9} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+                    <p>{getHistory()[9]}</p>
+                    <canvas ref={this.history10} width={this.state.canvasWidth} height={this.state.canvasHeight}> </canvas>
+                </div>
             );
         }
 
