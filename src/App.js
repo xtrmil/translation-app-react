@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 import './App.css';
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
 
@@ -18,9 +19,9 @@ function App() {
     <Router>
     <div className="App">
         <Switch>
-          <Route path="/register" component={Register} />
-          <Route path="/translation" component={Translation} />
-          <Route path="/history" component={History} />
+          <Route path="/register" exact component={Register} />
+          <PrivateRoute path={"/translation"} exact component={Translation} />
+          <PrivateRoute path={"/history"} exact component={History} />
           <Route path="*" component={NotFound} />
         </Switch>
     </div>
