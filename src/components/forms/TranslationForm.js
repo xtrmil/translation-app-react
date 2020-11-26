@@ -8,7 +8,8 @@ import {addToHistory} from '../../history/translation.history';
 export default class TranslationForm extends React.Component {
     onchangeInput;
     state = {
-        output: ''
+        output: '',
+        coordinates: initiateSignsMap()
     }
     
     handleChange(e) {
@@ -18,6 +19,7 @@ export default class TranslationForm extends React.Component {
     onTranslationClicked() {
         this.setState({ output: this.onchangeInput});
         addToHistory(this.onchangeInput);
+        console.log(this.state.coordinates);
         
     }
     render() {
@@ -39,7 +41,7 @@ export default class TranslationForm extends React.Component {
                 </form>
                 
                
-                <CanvasComponent input={convertToCoordinates(initiateSignsMap(), this.state.output)} />
+                <CanvasComponent input={convertToCoordinates(this.state.coordinates, this.state.output)} />
             </div>
 
         );
