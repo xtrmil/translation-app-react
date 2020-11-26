@@ -16,8 +16,8 @@ export const addToHistory = (word) => {
         localStorage.setItem('history', JSON.stringify(temp));
     }
 }
-// eslint-disable-next-line
+
 export const getHistory = () => {
-    let collected = JSON.parse(localStorage.getItem('history'));
-    return collected;
+    let wordHistory = JSON.parse(localStorage.getItem('history'));
+    return wordHistory;
 }
