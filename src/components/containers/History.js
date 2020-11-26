@@ -9,6 +9,7 @@ class History extends React.Component {
 
     state = {
         canvasList: getHistory(),
+        coordinates: initiateSignsMap()
     }
 
     render() {
@@ -24,7 +25,7 @@ class History extends React.Component {
                         <div key = {i}>
 
                                 {item}
-                                <CanvasComponent input={convertToCoordinates(initiateSignsMap(), item)} />
+                                <CanvasComponent input={convertToCoordinates(this.state.coordinates, item)} />
 
                         </div>)
                 })}

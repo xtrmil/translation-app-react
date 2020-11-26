@@ -1,25 +1,29 @@
 export const addToHistory = (word) => {
     let temp = [];
-    if (localStorage.getItem('history') == null) {
+    if (word.length > 0) {
 
-        temp.push(word)
+        if (localStorage.getItem('history') == null) {
 
-        localStorage.setItem('history', JSON.stringify(temp));
-    } else {
+            temp.push(word)
 
-        temp = JSON.parse(localStorage.getItem('history'));
-
-        if (temp.includes(word) === false) {
-            if (temp.length >= 10) {
-
-                temp.shift();
-                temp.push(word);
-
-            } else {
-                temp.push(word);
-            }
             localStorage.setItem('history', JSON.stringify(temp));
+        } else {
+
+            temp = JSON.parse(localStorage.getItem('history'));
+
+            if (temp.includes(word) === false) {
+                if (temp.length >= 10) {
+
+                    temp.shift();
+                    temp.push(word);
+
+                } else {
+                    temp.push(word);
+                }
+                localStorage.setItem('history', JSON.stringify(temp));
+            }
         }
+
     }
 }
 
