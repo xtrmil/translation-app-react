@@ -1,4 +1,4 @@
-import React, { Component, } from 'react';
+import React from 'react';
 import signSheet from '../../src/sign-spritesheet-1200.png';
 import { convertToCoordinates } from './inputconverter';
 import { initiateSignsMap } from './inputconverter';
