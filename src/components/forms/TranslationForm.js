@@ -11,14 +11,13 @@ export default class TranslationForm extends React.Component {
         output: ''
     }
     
-
     handleChange(e) {
         this.onchangeInput = e.target.value.trim().toLowerCase();
     }
 
     onTranslationClicked() {
         this.setState({ output: this.onchangeInput});
-        addToHistory(this.state.output);
+        addToHistory(this.onchangeInput);
         
     }
     render() {
