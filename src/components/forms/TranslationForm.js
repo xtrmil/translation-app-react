@@ -6,20 +6,20 @@ import { initiateSignsMap } from '../../canvas/inputconverter';
 import {addToHistory} from '../../history/translation.history';
 
 export default class TranslationForm extends React.Component {
-
+    onchangeInput;
     state = {
-        userInput: ''
+        output: ''
     }
+    
 
     handleChange(e) {
-        this.setState({ userInput: e.target.value.trim().toLowerCase() });
-        console.log(this.state.userInput);
+        this.onchangeInput = e.target.value.trim().toLowerCase();
     }
 
     onTranslationClicked() {
-
-        addToHistory(this.state.userInput);
-        document.getElementById("canvas").innerHTML =  `<CanvasComponent input={convertToCoordinates(initiateSignsMap(), this.state.userInput)} />`;
+        this.setState({ output: this.onchangeInput});
+        addToHistory(this.state.output);
+        
     }
     render() {
         return (
@@ -39,8 +39,8 @@ export default class TranslationForm extends React.Component {
                     </div>
                 </form>
                 
-                <div id="canvas"></div>
-                <CanvasComponent input={convertToCoordinates(initiateSignsMap(), this.state.userInput)} />
+               
+                <CanvasComponent input={convertToCoordinates(initiateSignsMap(), this.state.output)} />
             </div>
 
         );

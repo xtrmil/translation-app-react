@@ -7,33 +7,32 @@ import { Link } from 'react-router-dom';
 
 class History extends React.Component {
 
-  state = {
-    canvasList: getHistory(),
-  }
+    state = {
+        canvasList: getHistory(),
+    }
 
-  render() {
-    return (
-      <div>
-          <h1>Welcome to history</h1>
-          <Link to="/translation">
-          <button>Go to Translation page</button>
-          </Link>
-        { this.state.canvasList.map((item,i) => {
-            
-            return (
-                <div><table>
-                   
-            <th>{item}</th>
-            <td><CanvasComponent input= { convertToCoordinates(initiateSignsMap(),item)}/></td>
-           
-            </table>
-            </div>)
-        })}
-        
+    render() {
+        return (
+            <div>
+                <h1>Welcome to history</h1>
+                <Link to="/translation">
+                    <button>Go to Translation page</button>
+                </Link>
+                { this.state.canvasList.map((item, i) => {
 
-      </div>
-    );
-  }
+                    return (
+                        <div key = {i}>
+
+                                {item}
+                                <CanvasComponent input={convertToCoordinates(initiateSignsMap(), item)} />
+
+                        </div>)
+                })}
+
+
+            </div>
+        );
+    }
 }
 
 export default History;
