@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {register} from '../../session/user.session';
 const RegisterForm = props => {
 
@@ -20,7 +21,9 @@ const RegisterForm = props => {
 
 
             <div>
+                <Link to="/translation">
                 <button type="button" onClick={onRegisterClicked}>Register</button>
+                </Link>
             </div>
         </form>
     );

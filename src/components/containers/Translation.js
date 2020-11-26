@@ -5,7 +5,7 @@ const Translation = () => (
 
     
     <div>
-        <h1>Welcome to the Dashboard.</h1>
+        <h1>Welcome to the Translation</h1>
         <TranslationForm/>
     </div>
 

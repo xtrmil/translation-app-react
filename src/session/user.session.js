@@ -1,7 +1,14 @@
-export const register = (username) => {
-    localStorage.setItem('ta_session', JSON.stringify(username));
+const register = (username) => {
+    localStorage.setItem('user', JSON.stringify(username));
 }
 
-export const logout = () => {
+ const logout = () => {
     localStorage.clear();
 }
+
+const getUser = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    return user;
+}
+export {register, getUser, logout};
