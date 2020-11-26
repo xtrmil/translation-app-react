@@ -9,6 +9,8 @@ export const convertToCoordinates = (signCoordinates, input) => {
 
 }
 
+
+
 export const initiateSignsMap = () => {
   let signs = new Map();
    

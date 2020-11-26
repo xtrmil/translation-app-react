@@ -4,7 +4,7 @@ import { convertToCoordinates } from './inputconverter';
 import { initiateSignsMap } from './inputconverter';
 import { addToHistory, getHistory } from '../history/translation.history';
 
-export default class CanvasCreator extends Component {
+export default class CanvasCreator extends React.Component {
 
     constructor(props) {
         super(props);
@@ -26,7 +26,8 @@ export default class CanvasCreator extends Component {
             canvasHeight: 150,
             input: null,
             signCoordinates: initiateSignsMap(),
-            showHistory: false    
+            showHistory: false,  
+            canvasList: []
         }
     }
 
@@ -54,6 +55,8 @@ export default class CanvasCreator extends Component {
             });
         }
     }
+
+
 
     updateCanvas(signs, cref) {
         let targetSize = 100;
@@ -109,6 +112,7 @@ export default class CanvasCreator extends Component {
                 
                 <div>
                     <h1>HISTORY</h1>
+
                     <p>{getHistory()[0]}</p>
                     <canvas ref={this.history0} width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
                     <p>{getHistory()[1]}</p>
