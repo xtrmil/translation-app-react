@@ -14,6 +14,16 @@ class History extends React.Component {
     }
 
     render() {
+        if(getHistory() ==null ){
+            return <div>
+                 <h1>Welcome to history</h1>
+                 <p>You have no record of translations to view.</p>
+                <Link to="/translation">
+                    <button>Go to Translation page</button>
+                </Link>
+            </div>
+        } 
+        else{
         return (
             <div>
                 <h1>Welcome to history</h1>
@@ -32,8 +42,10 @@ class History extends React.Component {
                 })}
 
 
+
             </div>
         );
+            }
     }
 }
 
