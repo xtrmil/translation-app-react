@@ -79,4 +79,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Created by
 
-[Oscar Dahlquist] (https://github.com/Vattenkruka), [Emil Oja] (https://github.com/xtrmil)
+[Oscar Dahlquist](https://github.com/Vattenkruka), [Emil Oja](https://github.com/xtrmil)
