@@ -22,7 +22,7 @@ function App() {
     <Router>
     <div className="App">
         <Switch>
-        <Route path="/register" exact component={Register} />
+        <Route path="/" exact component={Register} />
           <PrivateRoute path={"/translation"} exact component={Translation} />
           <PrivateRoute path={"/history"} exact component={History} />
           <Route path="*" component={NotFound} />

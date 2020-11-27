@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CanvasComponent from '../../canvas/CanvasComponent';
-import { convertToCoordinates } from '../../canvas/inputconverter';
-import { initiateSignsMap } from '../../canvas/inputconverter';
-import {addToHistory} from '../../history/translation.history';
+import CanvasComponent from '../canvas/CanvasComponent';
+import { convertToCoordinates, initiateSignsMap } from '../../services/input.converter';
+import { addToHistory } from '../../services/session/translation.history';
 
 export default class TranslationForm extends React.Component {
     onchangeInput;
@@ -11,21 +10,21 @@ export default class TranslationForm extends React.Component {
         output: '',
         coordinates: initiateSignsMap()
     }
-    
+
     handleChange(e) {
         this.onchangeInput = e.target.value.trim().toLowerCase();
     }
 
     onTranslationClicked() {
-        this.setState({ output: this.onchangeInput});
+        this.setState({ output: this.onchangeInput });
         addToHistory(this.onchangeInput);
-        
+
     }
     render() {
         return (
             <div>
                 <Link to="/history">
-                <button>Go to history</button>
+                    <button>Go to history</button>
                 </Link>
                 <form>
                     <div>
@@ -38,8 +37,8 @@ export default class TranslationForm extends React.Component {
                         <button type="button" onClick={this.onTranslationClicked.bind(this)}>Translate</button>
                     </div>
                 </form>
-                
-               
+
+
                 <CanvasComponent input={convertToCoordinates(this.state.coordinates, this.state.output)} runOnMount={false} />
             </div>
 

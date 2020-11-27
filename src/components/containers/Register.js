@@ -1,6 +1,7 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import RegisterForm from '../forms/RegisterForm';
+import {getUser} from "../../services/session/user.session"
 
 const Register = () => {
 
@@ -13,6 +14,12 @@ const Register = () => {
             history.replace("/dashboard");
         }
     }
+
+    
+    if (getUser() != null) {
+        return <Redirect to="/translation"/>;
+      }
+
     return (
         <div>
             <h1>Register for Translation App</h1>
@@ -20,6 +27,7 @@ const Register = () => {
 
         </div>
     );
+
 };
 
 export default Register;

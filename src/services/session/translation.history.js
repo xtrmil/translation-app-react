@@ -1,12 +1,12 @@
-export const addToHistory = (word) => {
+const addToHistory = (word) => {
     let temp = [];
     if (word.length > 0) {
 
         if (localStorage.getItem('history') == null) {
 
             temp.push(word)
-
             localStorage.setItem('history', JSON.stringify(temp));
+            
         } else {
 
             temp = JSON.parse(localStorage.getItem('history'));
@@ -27,7 +27,9 @@ export const addToHistory = (word) => {
     }
 }
 
-export const getHistory = () => {
+const getHistory = () => {
     const wordHistory = JSON.parse(localStorage.getItem('history'));
     return wordHistory;
 }
+
+export { addToHistory, getHistory }

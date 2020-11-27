@@ -1,12 +1,12 @@
 import React from 'react'
-import signSheet from '../sign-spritesheet-1200.png';
+import signSheet from '../../sign-spritesheet-1200.png';
 
 class CanvasComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.canvasWidth = 1000;
-    this.targetSize = 100;
+    this.targetSize = 70;
     this.signsPerRow = 10;
+    this.canvasWidth = this.signsPerRow * this.targetSize;
     this.translationRef = React.createRef();
   }
 
