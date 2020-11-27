@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import CanvasComponent from '../canvas/CanvasComponent';
 import { convertToCoordinates, initiateSignsMap } from '../../services/input.converter';
 import { addToHistory } from '../../services/session/translation.history';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default class TranslationForm extends React.Component {
     onchangeInput;
@@ -12,7 +15,9 @@ export default class TranslationForm extends React.Component {
     }
 
     handleChange(e) {
-        this.onchangeInput = e.target.value.trim().toLowerCase();
+        let value = e.target.value;
+        value = value.replace(/[^A-Za-z]/ig, '')
+        this.onchangeInput = value.trim().toLowerCase();
     }
 
     onTranslationClicked() {
@@ -23,23 +28,28 @@ export default class TranslationForm extends React.Component {
     render() {
         return (
             <div>
+                <Row>
+                    <Col className="text-right">
                 <Link to="/history">
-                    <button>Go to history</button>
+                <Button variant="outline-info dark mt-1 mb-1 mr-2">Go to history</Button>
                 </Link>
+                </Col>
+                </Row>
                 <form>
-                    <div>
-                        <label> The letters to translate (1 to 40 characters): </label>
-                        {/* <input type="text" minLength="1" maxLength="40" pattern="^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} /> */}
-                        <input type="text" minLength="1" maxLength="40" pattern="" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
-                    </div>
+                    <Row>
+                        <Col className="text-right">
+                    <input type="text" minLength="1" maxLength="40" pattern="[A-Za-z]" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
 
-                    <div>
-                        <button type="button" onClick={this.onTranslationClicked.bind(this)}>Translate</button>
-                    </div>
+                    </Col>
+                    <Col className="text-left">
+                        <Button type="button" variant="outline-info dark mt-1 mb-1 mr-2" onClick={this.onTranslationClicked.bind(this)}>Translate</Button>
+                        </Col>
+                    
+                    </Row>
                 </form>
 
-
                 <CanvasComponent input={convertToCoordinates(this.state.coordinates, this.state.output)} runOnMount={false} />
+
             </div>
 
         );

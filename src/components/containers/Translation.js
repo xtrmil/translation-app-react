@@ -1,14 +1,13 @@
 import React from 'react';
 import TranslationForm from '../forms/TranslationForm';
-import Navbar from '../Navbar';
+import NavbarComponent from '../NavbarComponent';
 
 const Translation = () => (
 
 
     <div>
-        <Navbar />
+        <NavbarComponent />
         <div>
-            <h1>Welcome to the Translation</h1>
             <TranslationForm />
         </div>
     </div>
