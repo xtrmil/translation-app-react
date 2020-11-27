@@ -1,6 +1,6 @@
 import React from "react";
 import {Redirect, Route} from "react-router-dom";
-import {getUser} from "../session/user.session";
+import {getUser} from "../services/session/user.session";
 
 const PrivateRoute = ({component : Component, ...rest}) =>{
     return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 import RegisterForm from '../forms/RegisterForm';
-import {getUser} from "../../session/user.session"
+import {getUser} from "../../services/session/user.session"
 
-const Register = (props) => {
+const Register = () => {
 
     const history = useHistory();
 
