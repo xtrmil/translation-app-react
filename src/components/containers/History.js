@@ -2,8 +2,12 @@ import React from 'react';
 import CanvasComponent from '../canvas/CanvasComponent';
 import { getHistory } from '../../services/session/translation.history';
 import { convertToCoordinates, initiateSignsMap } from '../../services/input.converter';
-import Navbar from '../Navbar';
+import NavbarComponent from '../NavbarComponent';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
 
 class History extends React.Component {
 
@@ -16,12 +20,12 @@ class History extends React.Component {
     render() {
         if (getHistory() == null) {
             return <div>
-                <Navbar />
+                <NavbarComponent />
                 <div>
-                    <h1>Welcome to history</h1>
-                    <p>You have no record of translations to view.</p>
+
+                    <p className="colour-white">You have no record of translations to view.</p>
                     <Link to="/translation">
-                        <button>Go to Translation page</button>
+                    <Button variant="outline-info dark mt-1 mb-1 mr-2">Translation page</Button>
                     </Link>
                 </div>
             </div>
@@ -29,26 +33,46 @@ class History extends React.Component {
         else {
             return (
                 <div>
-                    <Navbar />
+                    <NavbarComponent />
                     <div>
-                        <h1>Welcome to history</h1>
+                    <Row>
+                        <Col className= "text-right bg-dark opacity-95 border-bottom">
                         <Link to="/translation">
-                            <button>Go to Translation page</button>
+                            <Button variant="outline-info dark mt-1 mb-1 mr-2">Translation page</Button>
                         </Link>
-                        {this.state.canvasList.map((item, i) => {
+                        </Col>
+                        </Row>
+                        
+                      
+                        <Table striped bordered hover variant="dark">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Non-ASL</th>
+                                    <th className="text-left">American Sign Language</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.canvasList.map((item, i) => {
 
-                            return (
-                                <div key={i}>
+                                    return (
 
-                                    {item}
-                                    <CanvasComponent input={convertToCoordinates(this.state.coordinates, item)} runOnMount={true} />
+                                        <tr key={i}>
+                                            <td className="align-middle">{i + 1}</td>
+                                            <td className="align-middle">{item}</td>
+                                            <td className="text-left"><CanvasComponent input={convertToCoordinates(this.state.coordinates, item)} runOnMount={true} /></td>
+                                        </tr>
 
-                                </div>)
-                        })}
+                                    )
+                                })}
 
+                            </tbody>
 
+                        </Table>
+                        
+                        
                     </div>
-                </div>
+                </div >
             );
         }
     }

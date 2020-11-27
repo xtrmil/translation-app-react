@@ -10,6 +10,8 @@ import {
 import React from 'react';
 import './App.css';
 import PrivateRoute from "./components/PrivateRoute";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 
