@@ -2,6 +2,8 @@
 
 Deployed on Heroku: http://asl-translation-app.herokuapp.com/
 
+The app was made with React and React-bootstrap. 
+
 ## About Project
 
 The application was made to enable translation from english letters to American sign language letters. It consists of four pages: the register page(login), the translation page, the history(profile) and a NotFound page. 
@@ -32,6 +34,9 @@ After translation:
 #### Screenshot of NotFound page
 
 ![Not Found Page](https://i.gyazo.com/fee4a495b12c41386f8815eaee81c3b4.png)
+
+## License
+[MIT](https://mit-license.org/)
 
 ## Getting Started with Create React App
 
