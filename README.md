@@ -22,18 +22,13 @@ Lastly, we have a NotFound page for cases where the user has typed in a wrong ur
 ![Login Page](https://i.gyazo.com/f05f6b7ddceea874a50c36753dfedf6c.png)
 #### Screenshot of translation page
 
-Before translation:
-![Before translation on Translation page](https://i.gyazo.com/1e1cab8a02b590c07fe88ab1fd65f073.png)
 
-After translation:
+Translation:
 ![After translation on Translation page](https://i.gyazo.com/2b126815df8acec9dcaf8d75d88c1bb0.png)
 #### Screenshot of history page
 
 ![History page](https://i.gyazo.com/04fcae7fca9913cead445689c9f2f054.png)
 
-#### Screenshot of NotFound page
-
-![Not Found Page](https://i.gyazo.com/fee4a495b12c41386f8815eaee81c3b4.png)
 
 ## License
 [MIT](https://mit-license.org/)
