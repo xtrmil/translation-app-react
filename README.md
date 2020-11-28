@@ -2,8 +2,36 @@
 
 Deployed on Heroku: http://asl-translation-app.herokuapp.com/
 
+## About Project
 
+The application was made to enable translation from english letters to American sign language letters. It consists of four pages: the register page(login), the translation page, the history(profile) and a NotFound page. 
+Through the login page, the user will create a session which stores the username and when the user later translates letters on the translation page, it is this session which stores the last ten translation which then is shown on the history(profile) page.
 
+On the translation page, the user can translate up to 40 letters at a time, the translation will then be displayed on the page as well as stored in the localstorage.
+
+On the history page, the latest ten translations are displayed in the form of a table.
+
+Lastly, we have a NotFound page for cases where the user has typed in a wrong url, which then gives them a link which they can use to redirect to the translation page or the register page.
+
+### Usage
+
+#### Screenshot of register page
+
+![Login Page](https://i.gyazo.com/f05f6b7ddceea874a50c36753dfedf6c.png)
+#### Screenshot of translation page
+
+Before translation:
+![Before translation on Translation page](https://i.gyazo.com/1e1cab8a02b590c07fe88ab1fd65f073.png)
+
+After translation:
+![After translation on Translation page](https://i.gyazo.com/2b126815df8acec9dcaf8d75d88c1bb0.png)
+#### Screenshot of history page
+
+![History page](https://i.gyazo.com/04fcae7fca9913cead445689c9f2f054.png)
+
+#### Screenshot of NotFound page
+
+![Not Found Page](https://i.gyazo.com/fee4a495b12c41386f8815eaee81c3b4.png)
 
 ## Getting Started with Create React App
 
