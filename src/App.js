@@ -12,25 +12,19 @@ import './App.css';
 import PrivateRoute from "./components/PrivateRoute";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
-
-
 function App() {
-
-
 
   return (
     <Router>
-    <div className="App">
+      <div className="App">
         <Switch>
-        <Route path="/" exact component={Register} />
+          <Route path="/" exact component={Register} />
           <PrivateRoute path={"/translation"} exact component={Translation} />
           <PrivateRoute path={"/history"} exact component={History} />
           <Route path="*" component={NotFound} />
         </Switch>
-    </div>
-     </Router>
+      </div>
+    </Router>
   );
 }
 

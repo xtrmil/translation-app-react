@@ -8,8 +8,8 @@ const RegisterForm = () => {
     const [username, setUsername] = useState('');
 
     const onRegisterClicked = async ev => {
-        if(username!== ''){
-        register(username);
+        if (username !== '') {
+            register(username);
         }
     };
 
@@ -17,15 +17,14 @@ const RegisterForm = () => {
 
     return (
         <div id="register-container" className=" d-flex align-items-center">
-           
+
             <Card className="mx-auto shadow-lg rounded" style={{ width: '18rem', height: '20rem' }}>
                 <Card.Body>
                     <Card.Title>Login</Card.Title>
                     <form>
-                    <Card.Text>
-                        
-                                <input  type="text" placeholder="Enter a username" onChange={onUsernameChanged} />
-                    </Card.Text>
+                        <Card.Text>
+                            <input type="text" placeholder="Enter a username" onChange={onUsernameChanged} />
+                        </Card.Text>
                     </form>
                     <div>
                         <Link to="/translation">
@@ -37,5 +36,4 @@ const RegisterForm = () => {
         </div>
     );
 }
-
 export default RegisterForm;
