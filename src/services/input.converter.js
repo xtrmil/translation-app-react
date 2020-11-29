@@ -5,7 +5,6 @@ const convertToCoordinates = (signCoordinates, input) => {
   for (var i in input) {
     letterCordinates.push(signCoordinates.get(input.charAt(i)));
   }
-  
   return letterCordinates;
 }
 
@@ -23,4 +22,4 @@ const initiateSignsMap = () => {
   return signs;
 }
 
-export {initiateSignsMap, convertToCoordinates};
+export { initiateSignsMap, convertToCoordinates };

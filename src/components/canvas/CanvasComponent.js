@@ -6,7 +6,6 @@ class CanvasComponent extends React.Component {
     super(props);
     this.targetSize = 70;
     this.signsPerRow = 10;
-    this.canvasWidth = this.signsPerRow * this.targetSize;
     this.translationRef = React.createRef();
   }
 
@@ -25,10 +24,13 @@ class CanvasComponent extends React.Component {
   updateCanvas(targetSize, signsPerRow, inputSigns) {
     
     const ctx = this.translationRef.current.getContext('2d');
-    if (!this.props.runOnMount) {                        // clearing canvas before rendering new,
-      const canvas = this.translationRef.current;        // only needed on TranslationPage
-      ctx.clearRect(0, 0, canvas.width, canvas.height);  //
+    const canvas = this.translationRef.current; 
+    if (!this.props.runOnMount) {                        // clearing canvas before rendering new, 
+      ctx.clearRect(0, 0, canvas.width, canvas.height);  // only needed on TranslationPage
     }
+
+    canvas.width = signsPerRow * targetSize;
+    canvas.height = Math.ceil(inputSigns.length / 10) * targetSize;
 
     let imageObj1 = new Image();
     imageObj1.src = signSheet
@@ -41,8 +43,8 @@ class CanvasComponent extends React.Component {
       for (i = 0; i < inputSigns.length; i++) {
 
         ctx.drawImage(imageObj1, inputSigns[i][0], inputSigns[i][1], 150, 150, targetPositionY, targetPositionX, targetSize, targetSize);
-        targetPositionY += targetSize;  // changes Y position for next sprite
-        if (targetPositionY >= targetSize * signsPerRow) {  // sets Y position and draw forthcoming sprites on a new row
+        targetPositionY += targetSize;    // changes Y position for next sprite
+        if (targetPositionY >= targetSize * signsPerRow) {  // sets Y position and draws forthcoming sprites on a new row
           targetPositionY = 0;
           targetPositionX = targetPositionX + targetSize;
 
@@ -55,10 +57,9 @@ class CanvasComponent extends React.Component {
 
     return (
       <div>
-        <canvas ref={this.translationRef} width={this.canvasWidth} height={Math.ceil(this.props.input.length / 10) * this.targetSize}> </canvas>
+        <canvas ref={this.translationRef}> </canvas>
       </div>
     )
   }
 }
-
 export default CanvasComponent

@@ -23,33 +23,28 @@ export default class TranslationForm extends React.Component {
     onTranslationClicked() {
         this.setState({ output: this.onchangeInput });
         addToHistory(this.onchangeInput);
-
     }
     render() {
         return (
             <div>
                 <Row>
                     <Col className="text-right">
-                <Link to="/history">
-                <Button variant="outline-info dark mt-1 mb-1 mr-2">Go to history</Button>
-                </Link>
-                </Col>
+                        <Link to="/history">
+                            <Button variant="outline-info dark mt-1 mb-1 mr-2">Go to history</Button>
+                        </Link>
+                    </Col>
                 </Row>
                 <form>
                     <Row>
                         <Col className="text-right">
-                    <input type="text" minLength="1" maxLength="40" pattern="[A-Za-z .,]" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
-
-                    </Col>
-                    <Col className="text-left">
-                        <Button type="button" variant="outline-info dark mt-1 mb-1 mr-2" onClick={this.onTranslationClicked.bind(this)}>Translate</Button>
+                            <input type="text" minLength="1" maxLength="40" pattern="[A-Za-z .,]" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
                         </Col>
-                    
+                        <Col className="text-left">
+                            <Button type="button" variant="outline-info dark mt-1 mb-1 mr-2" onClick={this.onTranslationClicked.bind(this)}>Translate</Button>
+                        </Col>
                     </Row>
                 </form>
-
                 <CanvasComponent input={convertToCoordinates(this.state.coordinates, this.state.output)} runOnMount={false} />
-
             </div>
 
         );

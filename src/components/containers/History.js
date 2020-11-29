@@ -16,7 +16,6 @@ class History extends React.Component {
         coordinates: initiateSignsMap(),
 
     }
-
     render() {
         if (getHistory() == null) {
             return <div>
@@ -25,7 +24,7 @@ class History extends React.Component {
 
                     <p className="colour-white">You have no record of translations to view.</p>
                     <Link to="/translation">
-                    <Button variant="outline-info dark mt-1 mb-1 mr-2">Translation page</Button>
+                        <Button variant="outline-info dark mt-1 mb-1 mr-2">Translation page</Button>
                     </Link>
                 </div>
             </div>
@@ -35,15 +34,14 @@ class History extends React.Component {
                 <div>
                     <NavbarComponent />
                     <div>
-                    <Row>
-                        <Col className= "text-right bg-dark opacity-95 border-bottom">
-                        <Link to="/translation">
-                            <Button variant="outline-info dark mt-1 mb-1 mr-2">Translation page</Button>
-                        </Link>
-                        </Col>
+                        <Row>
+                            <Col className="text-right bg-dark opacity-95 border-bottom">
+                                <Link to="/translation">
+                                    <Button variant="outline-info dark mt-1 mb-1 mr-2">Translation page</Button>
+                                </Link>
+                            </Col>
                         </Row>
-                        
-                      
+
                         <Table striped bordered hover variant="dark">
                             <thead>
                                 <tr>
@@ -62,20 +60,14 @@ class History extends React.Component {
                                             <td className="align-middle">{item}</td>
                                             <td className="text-left"><CanvasComponent input={convertToCoordinates(this.state.coordinates, item)} runOnMount={true} /></td>
                                         </tr>
-
                                     )
                                 })}
-
                             </tbody>
-
                         </Table>
-                        
-                        
                     </div>
                 </div >
             );
         }
     }
 }
-
 export default History;

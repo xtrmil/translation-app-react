@@ -6,7 +6,7 @@ const addToHistory = (word) => {
 
             temp.push(word)
             localStorage.setItem('history', JSON.stringify(temp));
-            
+
         } else {
 
             temp = JSON.parse(localStorage.getItem('history'));
@@ -23,7 +23,6 @@ const addToHistory = (word) => {
                 localStorage.setItem('history', JSON.stringify(temp));
             }
         }
-
     }
 }
 
