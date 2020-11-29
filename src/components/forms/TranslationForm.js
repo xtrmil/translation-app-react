@@ -16,7 +16,7 @@ export default class TranslationForm extends React.Component {
 
     handleChange(e) {
         let value = e.target.value;
-        value = value.replace(/[^A-Za-z]/ig, '')
+        value = value.replace(/[^A-Za-z .,]/ig, '')
         this.onchangeInput = value.trim().toLowerCase();
     }
 
@@ -38,7 +38,7 @@ export default class TranslationForm extends React.Component {
                 <form>
                     <Row>
                         <Col className="text-right">
-                    <input type="text" minLength="1" maxLength="40" pattern="[A-Za-z]" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
+                    <input type="text" minLength="1" maxLength="40" pattern="[A-Za-z .,]" required placeholder="Enter letters" onChange={(e) => { this.handleChange(e) }} />
 
                     </Col>
                     <Col className="text-left">
