@@ -43,9 +43,9 @@ class CanvasComponent extends React.Component {
       for (i = 0; i < inputSigns.length; i++) {
 
         ctx.drawImage(imageObj1, inputSigns[i][0], inputSigns[i][1], 150, 150, targetPositionY, targetPositionX, targetSize, targetSize);
-        targetPositionY += targetSize;    // changes Y position for next sprite
-        if (targetPositionY >= targetSize * signsPerRow) {  // sets Y position and draws forthcoming sprites on a new row
-          targetPositionY = 0;
+        targetPositionY += targetSize;    // changes Y position for next sprite base on sprite width
+        if (targetPositionY >= targetSize * signsPerRow) {  
+          targetPositionY = 0;                              // sets Y position and draws forthcoming sprites on a new row
           targetPositionX = targetPositionX + targetSize;
 
         }
