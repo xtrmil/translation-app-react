@@ -8,7 +8,6 @@ import Navbar from 'react-bootstrap/Navbar';
 const NavbarComponent = () => {
 
     const name = getUser();
-    console.log(name);
 
     const onLogoutClicked = () => {
         logout();

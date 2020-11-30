@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import CanvasComponent from '../canvas/CanvasComponent';
 import { convertToCoordinates, initiateSignsMap } from '../../services/input.converter';
 import { addToHistory } from '../../services/session/translation.history';
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
